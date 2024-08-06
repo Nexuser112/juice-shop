@@ -12,7 +12,7 @@ pipeline {
     stage ('Trivy') {
       steps {
         // Install trivy
-        sh 'sudo apt-get install trivy'
+        sh -s 'apt-get install trivy'
       }
     }
     stage ('CommitSemgrep') {
