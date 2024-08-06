@@ -7,6 +7,7 @@ pipeline {
     stage ('Semgrep') {
       steps {
         sh 'pip3 install semgrep'
+        sh 'semgrep ci'
       }
     }
     /*stage ('Trivy') {
