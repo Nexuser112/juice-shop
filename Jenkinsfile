@@ -19,7 +19,7 @@ pipeline {
     }*/
     stage ('Pre-commit') {
       steps {
-        sh 'semgrep ci'
+        sh 'semgrep scan'
       }
     }
     stage ('Commit') {
