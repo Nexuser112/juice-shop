@@ -9,14 +9,14 @@ pipeline {
         sh 'pip3 install semgrep'
       }
     }
-    stage ('Trivy') {
+    /*stage ('Trivy') {
       steps {
         // Install trivy
         // sh 'll'
         //sh 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.18.3'
                 //sh 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl > html.tpl'
       }
-    }
+    }*/
     stage ('Pre-commit') {
       steps {
         sh 'semgrep ci'
