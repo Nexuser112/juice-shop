@@ -1,8 +1,8 @@
 pipeline {
   agent any
-    /*environment {
+    environment {
       EMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
-    }*/
+    }
   stages {
     stage ('Semgrep') {
       steps {
