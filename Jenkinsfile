@@ -12,9 +12,7 @@ pipeline {
     stage ('Trivy') {
       steps {
         // Install trivy
-        sh 'git clone --depth 1 --branch v0.54.1 https://github.com/aquasecurity/trivy'
-        sh 'cd trivy'
-        sh 'go install ./cmd/trivy'
+       sh 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin v0.54.1'
       }
     }
     stage ('CommitSemgrep') {
