@@ -7,7 +7,6 @@ pipeline {
     stage ('Semgrep') {
       steps {
         sh 'pip3 install semgrep'
-        sh 'semgrep ci'
       }
     }
     /*stage ('Trivy') {
@@ -20,7 +19,7 @@ pipeline {
     }*/
     stage ('Pre-commit') {
       steps {
-        sh 'semgrep scan'
+        sh 'semgrep ci'
       }
     }
     stage ('Commit') {
