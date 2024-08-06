@@ -4,7 +4,7 @@ pipeline {
       EMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
     }
   stages {
-    stage ('Semgrep') {ddqadq
+    stage ('Semgrep') {
       steps {
         sh 'pip3 install semgrep'
       }
