@@ -12,11 +12,8 @@ pipeline {
     stage ('Trivy') {
       steps {
         // Install trivy
-        sh 'apt install wget apt-transport-https gnupg lsb-release'
-        sh 'wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | tee /usr/share/keyrings/trivy.gpg > /dev/null'
-        sh 'echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | tee -a /etc/apt/sources.list.d/trivy.list'
-        sh 'apt update'
-        sh 'apt install trivy'
+        sh 'wget https://github.com/aquasecurity/trivy/releases/download/v${0.45.0}/trivy_${0.45.0}_Linux-64bit.deb'
+        sh 'dpkg -i trivy_*_Linux-64bit.deb'
       }
     }
     stage ('CommitSemgrep') {
