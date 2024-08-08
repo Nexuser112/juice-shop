@@ -12,7 +12,7 @@ pipeline {
     stage ('Trivy') {
       steps {
         // Install trivy
-        sh 'docker run -v docker.io/aquasec/trivy -v https://hub.docker.com/r/aquasec/trivy aquasec/trivy:0.54.1 image python:3.4-alpine'
+        sh 'docker run -v public.ecr.aws/aquasecurity/trivy -v https://gallery.ecr.aws/aquasecurity/trivy aquasec/trivy:0.54.1 image python:3.4-alpine'
 
       }
     }
