@@ -12,8 +12,7 @@ pipeline {
     stage ('Trivy') {
       steps {
         // Install trivy
-        sh 'wget https://github.com/aquasecurity/trivy/releases/download/v${0.45.0}/trivy_${0.45.0}_Linux-64bit.deb'
-        sh 'dpkg -i trivy_*_Linux-64bit.deb'
+        sh 'docker run aquasec/trivy'
       }
     }
     stage ('CommitSemgrep') {
