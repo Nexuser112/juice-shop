@@ -2,7 +2,7 @@ pipeline {
   agent any
     environment {
       EMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
-      IMAGE_NAME = 'my-app-image:latest'
+      IMAGE_NAME = 'Dockerfile'
       SYFT_PATH = "${env.WORKSPACE}/syft"
       GRYPE_PATH = "${env.WORKSPACE}/grype"
       TRIVY_PATH = "${env.WORKSPACE}/trivy"
