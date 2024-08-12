@@ -13,7 +13,8 @@ pipeline {
             steps {
                 script {
                     // Установка Trivy 
-                    sh 'if ! [ -x "$(command -v trivy)" ]; then curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/scripts/install.sh | sh -s -- -b /usr/local/bin fi'
+                    sh 'if ! [ -x "$(command -v trivy)" ]; then curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/scripts/install.sh | sh -s -- -b /usr/local/bin 
+                  fi'
                 }
             }
         }
