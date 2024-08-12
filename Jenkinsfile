@@ -47,7 +47,7 @@ pipeline {
       steps {       
         sh '''
         #!/bin/bash
-        trivy fs --format json --output ${TRIVY_REPORT_FS} ${env.trivy}
+        trivy fs --format json --output ${TRIVY_REPORT_FS} ${env.WORKSPACE/trivy
         '''
       }
     }
