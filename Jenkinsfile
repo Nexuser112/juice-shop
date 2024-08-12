@@ -3,7 +3,6 @@ pipeline {
     environment {
       EMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
       IMAGE_NAME = 'my-app-image:latest'
-      SYFT_PATH = "${env.home/kali}/syft"
     }
   stages {
     stage ('Install Semgrep') {
