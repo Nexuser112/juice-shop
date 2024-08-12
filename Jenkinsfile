@@ -45,7 +45,7 @@ pipeline {
     }
     stage ('CommitTrivy') {
       steps {       
-        sh 'trivy fs --format json --output ${TRIVY_REPORT_FS}'
+        sh 'trivy fs --format json --output ${TRIVY_REPORT_FS} dir'
       }
     }
     stage ('BuildSyft') {
