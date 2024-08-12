@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Установка Trivy 
-                    sh 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/scripts/install.sh | sh -s -- -b ${TRIVY_PATH}
+                    sh 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/scripts/install.sh | sh -s -- -b ${TRIVY_PATH}'
                 }
             }
         }
