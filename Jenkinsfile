@@ -5,14 +5,7 @@ pipeline {
       IMAGE_NAME = 'my-app-image:latest'
     }
   stages {
-    stage('Build Docker Image') {
-            steps {
-                script {
-                    sh 'docker.build${IMAGE_NAME}'
-                }
-            }
-        }
-    stage ('Semgrep') {
+    stage ('Install Semgrep') {
       steps {
         sh 'pip3 install semgrep'
       }
@@ -25,12 +18,30 @@ pipeline {
                 }
             }
         }
+    stage('Install Syft') {
+            steps {
+                script {
+                    // Установка Syft
+                    sh 'curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin'
+                }
+            }
+        }
     stage ('CommitSemgrep') {
       steps {
         sh 'semgrep scan'
       }
     }
     stage ('CommitTrivy') {
+      steps {       
+        sh "trivy image ${IMAGE_NAME}"
+      }
+    }
+    stage ('BuildSyft') {
+      steps {       
+        sh "trivy image ${IMAGE_NAME}"
+      }
+    }
+    stage ('BuildGrype') {
       steps {       
         sh "trivy image ${IMAGE_NAME}"
       }
