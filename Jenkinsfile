@@ -3,6 +3,8 @@ pipeline {
     environment {
       EMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
       IMAGE_NAME = 'my-app-image:latest'
+      SYFT_PATH = "${env.WORKSPACE}/syft"
+      GRYPE_PATH = "${env.WORKSPACE}/grype"
     }
   stages {
     stage ('Install Semgrep') {
@@ -22,7 +24,7 @@ pipeline {
             steps {
                 script {
                     // Установка Syft
-                    sh 'curl -sfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin'
+                    sh 'curl -sfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b ${SYFT_PATH}'
                 }
             }
         }
@@ -30,7 +32,7 @@ pipeline {
             steps {
                 script {
                     // Установка Grype 
-                    sh 'curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin'
+                    sh 'curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b ${GRYPE_PATH}'
                 }
             }
         }
