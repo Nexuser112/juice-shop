@@ -22,7 +22,15 @@ pipeline {
             steps {
                 script {
                     // Установка Syft
-                    sh 'curl -sfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b ${SYFT_PATH}'
+                    sh 'curl -sfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin'
+                }
+            }
+        }
+    stage('Install Grype') {
+            steps {
+                script {
+                    // Установка Grype 
+                    sh 'curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin'
                 }
             }
         }
