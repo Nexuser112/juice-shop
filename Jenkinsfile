@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Установка Syft
-                    sh 'curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin'
+                    sh 'curl -sfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin'
                 }
             }
         }
