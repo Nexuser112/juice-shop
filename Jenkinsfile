@@ -3,6 +3,7 @@ pipeline {
     environment {
       EMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
       IMAGE_NAME = 'my-app-image:latest'
+      SYFT_PATH = "${env.home/kali}/syft"
     }
   stages {
     stage ('Install Semgrep') {
@@ -22,7 +23,7 @@ pipeline {
             steps {
                 script {
                     // Установка Syft
-                    sh 'curl -sfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin'
+                    sh 'curl -sfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b ${SYFT_PATH}'
                 }
             }
         }
