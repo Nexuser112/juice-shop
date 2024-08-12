@@ -6,6 +6,7 @@ pipeline {
       SYFT_PATH = "${env.WORKSPACE}/syft"
       GRYPE_PATH = "${env.WORKSPACE}/grype"
       TRIVY_PATH = "${env.WORKSPACE}/trivy"
+      TRIVY_REPORT_FS = 'trivy-report-fs.json'
     }
   stages {
     stage ('Install Semgrep') {
@@ -44,7 +45,7 @@ pipeline {
     }
     stage ('CommitTrivy') {
       steps {       
-        sh "trivy image ${IMAGE_NAME}"
+        sh 'trivy fs --format json --output ${TRIVY_REPORT_FS} ${env.trivy'
       }
     }
     stage ('BuildSyft') {
