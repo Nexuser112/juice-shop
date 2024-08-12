@@ -51,7 +51,7 @@ pipeline {
     }
     stage ('BuildSyft') {
       steps {       
-        sh '${SYFT_PATH}/syft dir:${env.WORKSPACE} -o json > ${SYFT_REPORT_FS}'
+        sh '${SYFT_PATH}/syft dir:${SYFT_PATH} -o json > ${SYFT_REPORT_FS}'
       }
     }
     stage ('BuildGrype') {
