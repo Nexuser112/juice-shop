@@ -9,13 +9,18 @@ pipeline {
         sh 'pip3 install semgrep'
       }
     }
-    stage ('Trivy') {
-      steps {
-        // Install trivy
-        sh 'docker run --user public.ecr.aws/aquasecurity/trivy --user https://gallery.ecr.aws/aquasecurity/trivy aquasec/trivy:0.54.1 image python:3.4-alpine'
-
-      }
-    }
+    stage('Install Trivy') {
+            steps {
+                script {
+                    // Установка Trivy 
+                    sh """
+                    if ! [ -x "$(command -v trivy)" ]; then
+                        curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/scripts/install.sh | sh -s -- -b /usr/local/bin
+                    fi
+                    """
+                }
+            }
+        }
     stage ('CommitSemgrep') {
       steps {
         sh 'semgrep scan'
