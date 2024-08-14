@@ -44,7 +44,7 @@ pipeline {
         }
     stage ('CommitSemgrep') {
       steps {
-        sh 'semgrep scan -o ${SEMGREP_REPORT_FS} ${SEMGREP_PATH}'
+        sh 'semgrep scan -o ${SEMGREP_REPORT_FS}'
       }
     }
     stage ('CommitTrivy') {
@@ -54,7 +54,7 @@ pipeline {
     }
     stage ('BuildSyft') {
       steps {       
-        sh '${SYFT_PATH}/syft dir:${SYFT_PATH} --format jso --output ${SYFT_REPORT_FS} ${SYFT_PATH}'
+        sh '${SYFT_PATH}/syft dir:${SYFT_PATH} --format json --output ${SYFT_REPORT_FS} ${SYFT_PATH}'
       }
     }
     stage ('BuildGrype') {
