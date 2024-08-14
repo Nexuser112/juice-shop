@@ -3,12 +3,14 @@ pipeline {
     environment {
       EMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
       IMAGE_NAME = 'Dockerfile'
+      SEMGREP_PATH = "${env.WORKSPACE}/semgrep"
       SYFT_PATH = "${env.WORKSPACE}/syft"
       GRYPE_PATH = "${env.WORKSPACE}/grype"
       TRIVY_PATH = "${env.WORKSPACE}/trivy"
       TRIVY_REPORT_FS = 'trivy-report-fs.json'
       SYFT_REPORT_FS = 'syft-report-fs.json'
       GRYPE_REPORT_FS = 'grype-report-fs.json'
+      SEMGREP_REPORT_FS = 'semgrep-report-fs.json'
     }
   stages {
     stage ('Install Semgrep') {
@@ -42,7 +44,7 @@ pipeline {
         }
     stage ('CommitSemgrep') {
       steps {
-        sh 'semgrep scan'
+        sh 'semgrep scan --format json --output ${SEMGREP_REPORT_FS} ${SEMGREP_PATH}'
       }
     }
     stage ('CommitTrivy') {
@@ -52,12 +54,12 @@ pipeline {
     }
     stage ('BuildSyft') {
       steps {       
-        sh '${SYFT_PATH}/syft dir:${SYFT_PATH} -o json > ${SYFT_REPORT_FS}'
+        sh '${SYFT_PATH}/syft dir:${SYFT_PATH} --format jso --output ${SYFT_REPORT_FS} ${SYFT_PATH}'
       }
     }
     stage ('BuildGrype') {
       steps {       
-        sh '${GRYPE_PATH}/grype dir:${GRYPE_PATH} -o json > ${GRYPE_REPORT_FS}'
+        sh '${GRYPE_PATH}/grype dir:${GRYPE_PATH} --format json --output ${GRYPE_REPORT_FS}'
       }
     }
   }
