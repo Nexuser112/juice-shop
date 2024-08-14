@@ -59,7 +59,7 @@ pipeline {
     }
     stage ('BuildGrype') {
       steps {       
-        sh '${GRYPE_PATH}/grype dir:${GRYPE_PATH} -o ${GRYPE_REPORT_FS}'
+        sh '${GRYPE_PATH}/grype dir:${GRYPE_PATH} -o json'
       }
     }
   }
