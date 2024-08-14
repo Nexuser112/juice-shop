@@ -54,7 +54,7 @@ pipeline {
     }
     stage ('BuildSyft') {
       steps {       
-        sh '${SYFT_PATH}/syft /var/lib/jenkins/workspace/JuicePipe -o ${SYFT_REPORT_FS} --output-format syft-json'
+        sh '${SYFT_PATH}/syft /var/lib/jenkins/workspace/JuicePipe -o ${SYFT_REPORT_FS}:syft-json'
       }
     }
     stage ('BuildGrype') {
