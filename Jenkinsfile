@@ -38,7 +38,7 @@ pipeline {
             steps {
                 script {
                     // Установка Grype 
-                    sh 'curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b ${GRYPE_PATH}'
+                    sh 'curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b ${GRYPE_PATH} v0.79.6'
                 }
             }
         }
