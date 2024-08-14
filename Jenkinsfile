@@ -44,7 +44,7 @@ pipeline {
         }
     stage ('CommitSemgrep') {
       steps {
-        sh 'semgrep scan -f json -o ${SEMGREP_REPORT_FS} ${SEMGREP_PATH}'
+        sh 'semgrep scan -o ${SEMGREP_REPORT_FS} ${SEMGREP_PATH}'
       }
     }
     stage ('CommitTrivy') {
