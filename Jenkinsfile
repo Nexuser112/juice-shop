@@ -54,7 +54,7 @@ pipeline {
     }
     stage ('BuildSyft') {
       steps {       
-        sh '${SYFT_PATH}/syft dir:${SYFT_PATH} --output ${SYFT_REPORT_FS}'
+        sh 'syft /var/lib/jenkins/workspace/JuicePipe -o ${SYFT_REPORT_FS}'
       }
     }
     stage ('BuildGrype') {
