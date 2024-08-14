@@ -8,7 +8,7 @@ pipeline {
       GRYPE_PATH = "${env.WORKSPACE}/grype"
       TRIVY_PATH = "${env.WORKSPACE}/trivy"
       TRIVY_REPORT_FS = 'trivy-report-fs.json'
-      SYFT_REPORT_FS = 'syft-report-fs.syft-json'
+      SYFT_REPORT_FS = 'syft-report-fs.json'
       GRYPE_REPORT_FS = 'grype-report-fs.json'
       SEMGREP_REPORT_FS = 'semgrep-report-fs.json'
     }
@@ -54,7 +54,7 @@ pipeline {
     }
     stage ('BuildSyft') {
       steps {       
-        sh '${SYFT_PATH}/syft dir:${SYFT_PATH} -o ${SYFT_REPORT_FS}'
+        sh '${SYFT_PATH}/syft dir:${SYFT_PATH} --output ${SYFT_REPORT_FS}'
       }
     }
     stage ('BuildGrype') {
