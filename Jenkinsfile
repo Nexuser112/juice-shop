@@ -54,12 +54,12 @@ pipeline {
     }
     stage ('BuildSyft') {
       steps {       
-        sh '${SYFT_PATH}/syft dir:${SYFT_PATH} --format json --output ${SYFT_REPORT_FS} ${SYFT_PATH}'
+        sh '${SYFT_PATH}/syft dir:${SYFT_PATH} -o ${SYFT_REPORT_FS}'
       }
     }
     stage ('BuildGrype') {
       steps {       
-        sh '${GRYPE_PATH}/grype dir:${GRYPE_PATH} --format json --output ${GRYPE_REPORT_FS}'
+        sh '${GRYPE_PATH}/grype dir:${GRYPE_PATH} -o ${GRYPE_REPORT_FS}'
       }
     }
   }
