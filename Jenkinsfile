@@ -8,7 +8,7 @@ pipeline {
       GRYPE_PATH = "${env.WORKSPACE}/grype"
       TRIVY_PATH = "${env.WORKSPACE}/trivy"
       TRIVY_REPORT_FS = 'trivy-report-fs.json'
-      SYFT_REPORT_FS = 'syft-report-fs.json'
+      SYFT_REPORT_FS = 'syft-report-fs.syft-json'
       GRYPE_REPORT_FS = 'grype-report-fs.json'
       SEMGREP_REPORT_FS = 'semgrep-report-fs.json'
     }
