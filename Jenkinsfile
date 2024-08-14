@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     // Установка Syft
-                    sh 'curl -sfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b ${SYFT_PATH}'
+                    sh 'curl -sfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b ${SYFT_PATH} v1.11.0'
                 }
             }
         }
